@@ -133,8 +133,28 @@ def run(picPath, net, width = None, height = None):
 def main():  
     # 初始化caffe net
     net = initCaffeNet()
+    keys0 = net.params.keys()
+    print net.params.keys()
+    for key0 in keys0:   # 输出所有层名，参数
+        print key0
+        try:
+            print net.params[key0][0].data
+        except IndexError:
+            continue
+        try:
+            print net.params[key0][1].data
+        except IndexError:
+            continue
+        try:
+            print net.params[key0][2].data
+        except IndexError:
+            continue
+        finally:
+            print '\n'
+
+
     # 运行计算
-    run("Final_Test/Images/00002.ppm", net)
+    # run("Final_Test/Images/00002.ppm", net)
     # if len(sys.argv)<=3:
     #     if len():
     #         pass
