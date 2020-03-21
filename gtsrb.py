@@ -86,11 +86,12 @@ def run(picPath, width = None, height = None):
     # 初始化网络
     net = caffe.Net(model_def, model_weights, caffe.TEST)
     # 读取图片
-    # image = Image.open(picPath)#返回一个Image对象
+    im = Image.open(picPath)#返回一个Image对象
     image = caffe.io.load_image(data_root+picPath)
+    print(image.size())
     # 获取图片尺寸
-    width = image.size[0]
-    height = image.size[1]
+    width = im.size[0]
+    height = im.size[1]
     # 设置输入图片大小
     ifnil(width, 48)
     ifnil(height, 48)
