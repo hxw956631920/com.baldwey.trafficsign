@@ -89,8 +89,8 @@ def run(picPath, width = None, height = None):
     # image = Image.open(picPath)#返回一个Image对象
     image = caffe.io.load_image(data_root+picPath)
     # 获取图片尺寸
-    width = image.size(0)
-    height = image.size(1)
+    width = image.size[0]
+    height = image.size[1]
     # 设置输入图片大小
     ifnil(width, 48)
     ifnil(height, 48)
