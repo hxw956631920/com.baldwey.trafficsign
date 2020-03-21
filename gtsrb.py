@@ -132,7 +132,7 @@ def main():
     # 初始化caffe net
     net = initCaffeNet()
     # 运行计算
-    run("camera_img/0.png", net)
+    run("camera_img/0.png", net, 48, 48)
     # if len(sys.argv)<=3:
     #     if len():
     #         pass
