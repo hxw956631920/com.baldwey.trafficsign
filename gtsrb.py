@@ -8,19 +8,21 @@ import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (10, 10)
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] = 'gray'
+caffe_root = '/home/baldwey/caffe_git/caffe/'
+sys.path.insert(0, caffe_root + '/python')
 
 import sys 
 import os
 import cv2
-
-caffe_root = '/home/baldwey/caffe_git/caffe/'
-sys.path.insert(0, caffe_root + '/python')
-
 import caffe
 
 data_root = '/home/baldwey/GTSRB/'
 
 net = None
+
+def ifnil(t, default):
+    if t == None:
+        t = default
 
 def binary2npy(src, dest):
     #create protobuf blob
@@ -35,7 +37,7 @@ def binary2npy(src, dest):
     np.save(dest, mean_npy)
     return mean_npy
 
-def transform(path):
+def transform(path, net):
     mu = np.load(path)
     mu = mu.mean(1).mean(1)
     transformer = caffe.io.Transformer({'data':net.blobs['data'].data.shape})
@@ -46,21 +48,34 @@ def transform(path):
     transformer.set_channel_swap('data', (2, 1, 0))
     return transformer
 
-def main():
-    #set caffe mode is cpu
+def run(width, height):
+    # 设置cpu模式
     caffe.set_mode_cpu()
-    #data root
+    # 测试模型
     model_def = data_root + 'model/deploy.prototxt'
+    # 权重
     model_weights = data_root + '_iter_9000.caffemodel'
+    # mean.binaryproto的路径
     model_mean_input = data_root + 'data/mean.binaryproto'
+    # 转换为.npy的输出路径
     model_mean_output = data_root + 'data/mean.npy'
-    #init net
-    global net
+    # 如果转换过则跳过这一步
+    if os.path.exists(model_mean_output):
+       npyfile = binary2npy(model_mean_input, model_mean_output)
+       print("#########binaryproto file to npyfile finish#######")
+    # 初始化网络
     net = caffe.Net(model_def, model_weights, caffe.TEST)
+    # 设置输入图片大小
+    ifnil(width, 48)
+    ifnil(height, 48)
+    net.blobs['data'].reshape(1,3,width,height) 
+
+def main():
+    
     #set test image's dimension is 48*49
-    net.blobs['data'].reshape(1,3,48,48) 
+    
     #transform binaryproto file to npy file
-    npyfile = binary2npy(model_mean_input, model_mean_output)
+    
     transformer = transform(model_mean_output)
     #use local img to predict
     #image = caffe.io.load_image(data_root+'Final_Test/Images/00051.ppm')
