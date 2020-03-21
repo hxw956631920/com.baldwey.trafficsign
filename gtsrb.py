@@ -119,9 +119,10 @@ def run(picPath, width = None, height = None):
 # 参数1 flag 模式： 模式1 图片模式 模式2 摄像头模式
 # 参数2 picPath 图片地址 (图片模式为图片所在地址 摄像头模式为摄像头保存的图片地址)
 def main():  
-    if len(sys.argv)<=3:
-        if len():
-            pass
+    run("Final_Test/Images/00002.ppm")
+    # if len(sys.argv)<=3:
+    #     if len():
+    #         pass
     
 
 
