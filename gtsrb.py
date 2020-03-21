@@ -5,12 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 #%matplotlib inline
 
-#set default show params
-plt.rcParams['figure.figsize'] = (10, 10)
-plt.rcParams['image.interpolation'] = 'nearest'
-plt.rcParams['image.cmap'] = 'gray'
-caffe_root = '/home/baldwey/caffe_git/caffe/'
-sys.path.insert(0, caffe_root + '/python')
 
 import sys 
 import os
@@ -19,6 +13,14 @@ import caffe
 from PIL import Image
 
 data_root = '/home/baldwey/GTSRB/'
+
+#设置默认参数 设置caffe根目录路径
+plt.rcParams['figure.figsize'] = (10, 10)
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+caffe_root = '/home/baldwey/caffe_git/caffe/'
+
+sys.path.insert(0, caffe_root + '/python')
 
 net = None
 
