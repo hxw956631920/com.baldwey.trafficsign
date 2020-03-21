@@ -90,19 +90,18 @@ def camera():
 
 def run(picPath, net, width = None, height = None):
     # 读取图片
-    im = Image.open(data_root+picPath)
+    image = Image.open(data_root+picPath)
+    image.resize((48,48), Image.NEAREST)
+    image = image/255
     # caffe.io加载的图片为0～1之间 RGB格式 cv2.imread加载的图片为0～255之间 通道格式为(H,W,C)，即行，列、通道数(Row, Col, C)。
     # 这段为cv2.imread读取的图片与caffe读取的图片的格式转换
     # image1=cv2.imread(caffe_root + 'examples/images/cat.jpg')  
     # image1=cv2.cvtColor(image1,cv2.COLOR_BGR2RGB)  
     # image1=image1/255
-    image = caffe.io.load_image(data_root+picPath)
-    # 获取图片尺寸
-    width = im.size[0]
-    height = im.size[1]
+    # image = caffe.io.load_image(data_root+picPath)
     # 设置输入图片大小
-    ifnil(width, 640)
-    ifnil(height, 480)
+    ifnil(width, 48)
+    ifnil(height, 48)
     # 设置数据读取层的形状
     net.blobs['data'].reshape(1,3,width,height) 
     # 均值处理过的结果
