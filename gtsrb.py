@@ -48,7 +48,7 @@ def transform(path, net):
     transformer.set_transpose('data', (2, 0, 1))
     transformer.set_mean('data', mu)
     transformer.set_raw_scale('data', 255)
-    # exchange channels, from rgb to bgr
+    # 转换通道 将rgb转换为bgr
     transformer.set_channel_swap('data', (2, 1, 0))
     return transformer
 
@@ -86,9 +86,13 @@ def run(picPath, width = None, height = None):
     # 初始化网络
     net = caffe.Net(model_def, model_weights, caffe.TEST)
     # 读取图片
-    im = Image.open(data_root+picPath)#返回一个Image对象
+    im = Image.open(data_root+picPath)
+    # caffe.io加载的图片为0～1之间 RGB格式 cv2.imread加载的图片为0～255之间 通道格式为(H,W,C)，即行，列、通道数(Row, Col, C)。
+    # 这段为cv2.imread读取的图片与caffe读取的图片的格式转换
+    # image1=cv2.imread(caffe_root + 'examples/images/cat.jpg')  
+    # image1=cv2.cvtColor(image1,cv2.COLOR_BGR2RGB)  
+    # image1=image1/255
     image = caffe.io.load_image(data_root+picPath)
-    print(image.size())
     # 获取图片尺寸
     width = im.size[0]
     height = im.size[1]
