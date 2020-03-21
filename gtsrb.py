@@ -100,8 +100,8 @@ def run(picPath, net, width = None, height = None):
     image=image/255
     # image = caffe.io.load_image(data_root+picPath)
     # 设置输入图片大小
-    ifnil(width, 48)
-    ifnil(height, 48)
+    ifnil(width, 100)
+    ifnil(height, 100)
     # 设置数据读取层的形状
     net.blobs['data'].reshape(1,3,width,height) 
     # 均值处理过的结果
@@ -131,7 +131,7 @@ def run(picPath, net, width = None, height = None):
 # 参数2 picPath 图片地址 (图片模式为图片所在地址 摄像头模式为摄像头保存的图片地址)
 def main():  
     # 初始化caffe net
-    # net = initCaffeNet()
+    net = initCaffeNet()
     # 运行计算
     run("camera_img/0.png", net, 100, 100)
     # if len(sys.argv)<=3:
