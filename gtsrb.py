@@ -96,7 +96,7 @@ def run(picPath, net, width = None, height = None):
     # 这段为cv2.imread读取的图片与caffe读取的图片的格式转换
     image=cv2.imread(data_root+picPath)  
     image=cv2.resize(image, (100, 100))
-    image=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
+    # image=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
     image=image/255
     # image = caffe.io.load_image(data_root+picPath)
     # 设置输入图片大小
