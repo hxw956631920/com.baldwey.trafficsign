@@ -95,7 +95,7 @@ def run(picPath, net, width = None, height = None):
     # caffe.io加载的图片为0～1之间 RGB格式 cv2.imread加载的图片为0～255之间 通道格式为(H,W,C)，即行，列、通道数(Row, Col, C)。
     # 这段为cv2.imread读取的图片与caffe读取的图片的格式转换
     image=cv2.imread(data_root+picPath)  
-    # image=cv2.resize(image, (48, 48))
+    image=cv2.resize(image, (100, 100))
     # image=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
     # image=image/255
     # # image = caffe.io.load_image(data_root+picPath)
@@ -131,7 +131,7 @@ def run(picPath, net, width = None, height = None):
 # 参数2 picPath 图片地址 (图片模式为图片所在地址 摄像头模式为摄像头保存的图片地址)
 def main():  
     # 初始化caffe net
-    net = initCaffeNet()
+    # net = initCaffeNet()
     # 运行计算
     run("camera_img/0.png", net, 48, 48)
     # if len(sys.argv)<=3:
