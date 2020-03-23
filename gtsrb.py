@@ -99,7 +99,10 @@ def run(picPath, net, width = None, height = None):
     # image=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
     # image=image/255
     image = caffe.io.load_image(data_root+picPath)
+    image = image*255
+    image=cv2.cvtColor(image, cv2.COLOR_RGB2BGR)  
     image=cv2.resize(image, (48, 48), 0, 0, interpolation=cv2.INTER_AREA)
+    image=image/255
     # 设置输入图片大小
     ifnil(width, 48)
     ifnil(height, 48)
@@ -125,7 +128,7 @@ def run(picPath, net, width = None, height = None):
     top_inds = output_prob.argsort()[::-1][:5]
     print 'probabilities and labels', zip(output_prob[top_inds], labels[top_inds])
     # 显示图片
-    plt.imshow(image)
+    plt.imshow(image*255)
     plt.show()
 
 # 参数1 flag 模式： 模式1 图片模式 模式2 摄像头模式
