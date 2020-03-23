@@ -94,11 +94,12 @@ def run(picPath, net, width = None, height = None):
     # image.resize((48,48), Image.NEAREST)
     # caffe.io加载的图片为0～1之间 RGB格式 cv2.imread加载的图片为0～255之间 通道格式为(H,W,C)，即行，列、通道数(Row, Col, C)。
     # 这段为cv2.imread读取的图片与caffe读取的图片的格式转换
-    image=cv2.imread(data_root+picPath)  
-    image=cv2.resize(image, (48, 48), 0, 0, interpolation=cv2.INTER_AREA)
+    # image=cv2.imread(data_root+picPath)  
+    # image=cv2.resize(image, (48, 48), 0, 0, interpolation=cv2.INTER_AREA)
     # image=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
     # image=image/255
-    # image = caffe.io.load_image(data_root+picPath)
+    image = caffe.io.load_image(data_root+picPath)
+    image=cv2.resize(image, (48, 48), 0, 0, interpolation=cv2.INTER_AREA)
     # 设置输入图片大小
     ifnil(width, 48)
     ifnil(height, 48)
