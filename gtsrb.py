@@ -97,11 +97,11 @@ def run(picPath, net, width = None, height = None):
     image=cv2.imread(data_root+picPath)  
     image=cv2.resize(image, (48, 48), 0, 0, interpolation=cv2.INTER_AREA)
     # image=cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  
-    image=image/255
-    # image = caffe.io.load_image(data_root+picPath)
-    # 设置输入图片大小
-    ifnil(width, 48)
-    ifnil(height, 48)
+    # image=image/255
+    # # image = caffe.io.load_image(data_root+picPath)
+    # # 设置输入图片大小
+    # ifnil(width, 48)
+    # ifnil(height, 48)
     # # 设置数据读取层的形状
     # net.blobs['data'].reshape(1,3,width,height) 
     # # 均值处理过的结果
