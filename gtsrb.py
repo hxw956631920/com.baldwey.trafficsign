@@ -102,14 +102,14 @@ def run(picPath, net, width = None, height = None):
     # 设置输入图片大小
     ifnil(width, 48)
     ifnil(height, 48)
-    # 设置数据读取层的形状
-    net.blobs['data'].reshape(1,3,width,height) 
-    # 均值处理过的结果
-    transformer = transform(model_mean_output, net)
-    # 对图片进行去均值处理
-    transformed_image = transformer.preprocess('data', image)
-    # 拷贝图像数据到网络层
-    net.blobs['data'].data[...] = transformed_image
+    # # 设置数据读取层的形状
+    # net.blobs['data'].reshape(1,3,width,height) 
+    # # 均值处理过的结果
+    # transformer = transform(model_mean_output, net)
+    # # 对图片进行去均值处理
+    # transformed_image = transformer.preprocess('data', image)
+    # # 拷贝图像数据到网络层
+    # net.blobs['data'].data[...] = transformed_image
     # # 前向传播计算得到结果
     # output = net.forward()
     # # 从softmax层在该模型中命名为prob 将结果取出
