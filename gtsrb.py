@@ -110,19 +110,19 @@ def run(picPath, net, width = None, height = None):
     transformed_image = transformer.preprocess('data', image)
     # 拷贝图像数据到网络层
     net.blobs['data'].data[...] = transformed_image
-    # 前向传播计算得到结果
-    output = net.forward()
-    # 从softmax层在该模型中命名为prob 将结果取出
-    output_prob = output['prob'][0]
-    # 打印结果
-    print 'predicted class is:', output_prob.argmax()
-    # 对比标签文件中其它5个高可能性的结果
-    labels_file = data_root + 'data/val.txt'
-    if os.path.exists(labels_file):
-        labels = np.loadtxt(labels_file, str, delimiter='\r')
-        print 'output lable:', labels[output_prob.argmax()]
-    top_inds = output_prob.argsort()[::-1][:5]
-    print 'probabilities and labels', zip(output_prob[top_inds], labels[top_inds])
+    # # 前向传播计算得到结果
+    # output = net.forward()
+    # # 从softmax层在该模型中命名为prob 将结果取出
+    # output_prob = output['prob'][0]
+    # # 打印结果
+    # print 'predicted class is:', output_prob.argmax()
+    # # 对比标签文件中其它5个高可能性的结果
+    # labels_file = data_root + 'data/val.txt'
+    # if os.path.exists(labels_file):
+    #     labels = np.loadtxt(labels_file, str, delimiter='\r')
+    #     print 'output lable:', labels[output_prob.argmax()]
+    # top_inds = output_prob.argsort()[::-1][:5]
+    # print 'probabilities and labels', zip(output_prob[top_inds], labels[top_inds])
     # 显示图片
     plt.imshow(image)
     plt.show()
