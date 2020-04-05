@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<annotation>
+	<folder>JPEGImages</folder>
+	<filename>00013_00000.ppm</filename>
+	<path>Unkown</path>
+	<source>
+		<database>Unkown</database>
+	</source>
+	<size>
+		<width>42</width>
+		<height>42</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>1</name>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>5</xmin>
+			<ymin>5</ymin>
+			<xmax>37</xmax>
+			<ymax>37</ymax>
+		</bndbox>
+	</object>
+</annotation>
